@@ -2,10 +2,12 @@ import { combineReducers } from "redux";
 import { RootAction } from "./root-actions";
 import counter from "../components/Counter/Counter-reducer";
 import userData from "../features/__commonReducers__/userDataReducer";
+import alert from "../features/alert/alert-reducer";
 
 const reducerMap = {
   counter,
-  userData
+  userData,
+  alert
 };
 
 export type RootState = {

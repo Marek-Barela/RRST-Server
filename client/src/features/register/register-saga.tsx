@@ -1,21 +1,39 @@
 import * as api from "./register-api";
 import { registerUser, registerUserRequest } from "./register-actions";
 import { loadUser } from "../authorization/authorization-actions";
-import { all, call, put, takeLatest } from "redux-saga/effects";
+import { setAlert, removeAlert } from "../alert/alert-actions";
+import { all, call, put, takeLatest, delay } from "redux-saga/effects";
 import { getType } from "typesafe-actions";
 import { RegisterUser } from "./register-model";
+import uuid from "uuid";
 
-export function* handleRegisterUser(registrationData:any) {
+interface Errors {
+  msg: "string";
+}
+
+export function* handleRegisterUser(registrationData: any) {
   const { payload } = registrationData;
   try {
     yield put(registerUserRequest.request());
-    const response: RegisterUser = yield call(api.registerUserInDatabase, payload);
+    const response: RegisterUser = yield call(
+      api.registerUserInDatabase,
+      payload
+    );
     yield put(registerUserRequest.success(response));
-    yield put(loadUser())
+    yield put(loadUser());
   } catch (err) {
-    //const errors = err.response.data.errors;
-    //yield put(setAlert(errors))
+    const errors = err.response.data.errors;
+    const errorId = uuid.v4();
+    const errorItems = errors.map((error: Errors) => {
+      return {
+        msg: error.msg,
+        id: errorId
+      };
+    });
     yield put(registerUserRequest.failure(err));
+    yield put(setAlert(errorItems));
+    yield delay(4000);
+    yield put(removeAlert(errorId));
   }
 }
 

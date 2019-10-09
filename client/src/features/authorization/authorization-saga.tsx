@@ -14,8 +14,6 @@ export function* handleFetchUser() {
     const userResponse: UserResponse = yield call(api.getUserFromDatabase);
     yield put(loadUserRequest.success(userResponse));
   } catch (err) {
-    const errors = err.response.data.errors;
-    console.log(errors);
     yield put(loadUserRequest.failure(err));
   }
 }

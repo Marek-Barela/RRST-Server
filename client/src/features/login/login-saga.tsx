@@ -1,9 +1,15 @@
 import * as api from "./login-api";
 import { loginUser, loginUserRequest } from "./login-actions";
 import { loadUser } from "../authorization/authorization-actions";
-import { all, call, put, takeLatest } from "redux-saga/effects";
+import { setAlert, removeAlert } from "../alert/alert-actions";
+import { all, call, put, takeLatest, delay } from "redux-saga/effects";
 import { getType } from "typesafe-actions";
 import { LoginUser } from "./login-model";
+import uuid from "uuid";
+
+interface Errors {
+  msg: "string";
+}
 
 export function* handleLoginUser(loginData: any) {
   const { payload } = loginData;
@@ -14,9 +20,17 @@ export function* handleLoginUser(loginData: any) {
     yield put(loadUser());
   } catch (err) {
     const errors = err.response.data.errors;
-    console.log(errors);
-    //yield put(setAlert(errors))
+    const errorId = uuid.v4();
+    const errorItems = errors.map((error: Errors) => {
+      return {
+        msg: error.msg,
+        id: errorId
+      };
+    });
     yield put(loginUserRequest.failure(err));
+    yield put(setAlert(errorItems));
+    yield delay(4000);
+    yield put(removeAlert(errorId));
   }
 }
 

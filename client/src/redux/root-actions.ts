@@ -4,12 +4,14 @@ import * as counter from "../components/Counter/Counter-actions";
 import * as authorization from "../features/authorization/authorization-actions";
 import * as register from "../features/register/register-actions";
 import * as login from "../features/login/login-actions";
+import * as alert from "../features/alert/alert-actions";
 
 export const actions = {
   counter,
   authorization,
   register,
-  login
+  login,
+  alert
 };
 
 export type RootAction = ActionType<typeof actions>;

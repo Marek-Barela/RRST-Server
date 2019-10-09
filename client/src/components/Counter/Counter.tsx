@@ -31,16 +31,16 @@ class Counter extends Component<Props> {
 
   handleTestRegister() {
     this.props.register({
-      name: "Marek",
-      email: "marek.barela@wp.pl",
+      name: "123123",
+      email: "123123@gmail.com",
       password: "123456"
     });
   }
 
   handleTestLogin() {
     this.props.login({
-      email: "marek.barela@wp.pl",
-      password: "123456"
+      email: "123123123.com",
+      password: "123"
     });
   }
 
