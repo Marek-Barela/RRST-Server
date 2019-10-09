@@ -1,5 +1,5 @@
 import * as api from "./authorization-api";
-import { fetchUser, fetchUserRequest } from "./authorization-actions";
+import { loadUser, loadUserRequest } from "./authorization-actions";
 import { all, call, put, takeEvery } from "redux-saga/effects";
 import { getType } from "typesafe-actions";
 import { UserResponse } from "./authorization-model";
@@ -9,16 +9,17 @@ export function* handleFetchUser() {
   if (localStorage.token) {
     setAuthToken(localStorage.token);
   }
-
   try {
-    yield put(fetchUserRequest.request());
+    yield put(loadUserRequest.request());
     const userResponse: UserResponse = yield call(api.getUserFromDatabase);
-    yield put(fetchUserRequest.success(userResponse));
+    yield put(loadUserRequest.success(userResponse));
   } catch (err) {
-    yield put(fetchUserRequest.failure(err));
+    const errors = err.response.data.errors;
+    console.log(errors);
+    yield put(loadUserRequest.failure(err));
   }
 }
 
 export default function*() {
-  yield all([takeEvery(getType(fetchUser), handleFetchUser)]);
+  yield all([takeEvery(getType(loadUser), handleFetchUser)]);
 }

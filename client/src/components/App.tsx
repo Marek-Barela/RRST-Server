@@ -2,12 +2,12 @@ import React, { useEffect } from "react";
 import Counter from "./Counter";
 import ProtectedRoute from "./ProtectedRoute";
 import { Route, Switch } from "react-router-dom";
-import { fetchUser } from "../features/authorization/authorization-actions";
+import { loadUser } from "../features/authorization/authorization-actions";
 import store from "../redux/store";
 
 const App: React.FC = () => {
   useEffect(() => {
-    store.dispatch(fetchUser());
+    store.dispatch(loadUser());
   }, []);
   return (
     <Switch>

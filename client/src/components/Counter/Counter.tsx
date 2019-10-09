@@ -5,6 +5,7 @@ import {
   fetchCounter
 } from "./Counter-actions";
 import { registerUser } from "../../features/register/register-actions";
+import { loginUser } from "../../features/login/login-actions";
 import { getCounter } from "./Counter-selectors";
 import { connect } from "react-redux";
 import { RootState } from "../../redux/root-reducer";
@@ -18,6 +19,7 @@ interface DispatchProps {
   onIncrement: () => void;
   fetch: () => void;
   register: any;
+  login: any;
 }
 
 type Props = StateProps & DispatchProps;
@@ -29,9 +31,16 @@ class Counter extends Component<Props> {
 
   handleTestRegister() {
     this.props.register({
-      name: "test",
-      email: "test",
-      password: "test"
+      name: "Marek",
+      email: "marek.barela@wp.pl",
+      password: "123456"
+    });
+  }
+
+  handleTestLogin() {
+    this.props.login({
+      email: "marek.barela@wp.pl",
+      password: "123456"
     });
   }
 
@@ -43,7 +52,10 @@ class Counter extends Component<Props> {
         <button onClick={onIncrement}>+1</button>
         <button onClick={onDecrement}>-1</button>
         <span>Result: {`${count}`}</span>
-        <button onClick={() => this.handleTestRegister()}>Test button</button>
+        <button onClick={() => this.handleTestRegister()}>
+          Register button
+        </button>
+        <button onClick={() => this.handleTestLogin()}>Login button</button>
       </>
     );
   }
@@ -61,7 +73,8 @@ const mapDispatchToProps = {
   onIncrement: incrementCounter,
   onDecrement: decrementCounter,
   fetch: fetchCounter,
-  register: registerUser
+  register: registerUser,
+  login: loginUser
 };
 
 export default connect<StateProps, DispatchProps, {}, RootState>(
