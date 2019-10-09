@@ -1,9 +1,11 @@
 import { Dispatch as ReduxDispatch } from "redux";
 import { ActionType } from "typesafe-actions";
 import * as counter from "../components/Counter/Counter-actions";
+import * as authorization from "../features/authorization/authorization-actions";
 
 export const actions = {
-  counter
+  counter,
+  authorization
 };
 
 export type RootAction = ActionType<typeof actions>;

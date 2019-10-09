@@ -12,17 +12,15 @@ const bindMiddleware = (middleware: Middleware[]) => {
   return applyMiddleware(...middleware);
 };
 
-function configureStore (initialState?: RootState): Store<RootState, RootAction> {
-  const sagaMiddleware = createSagaMiddleware();
-  const store: Store<RootState, RootAction> = createStore(
-    rootReducer,
-    initialState,
-    bindMiddleware([sagaMiddleware])
-  );
+const initialState = {};
 
-  (store as any).sagaTask = sagaMiddleware.run(rootSaga);
+const sagaMiddleware = createSagaMiddleware();
+const store: Store<RootState, RootAction> = createStore(
+  rootReducer,
+  initialState,
+  bindMiddleware([sagaMiddleware])
+);
 
-  return store;
-}
+(store as any).sagaTask = sagaMiddleware.run(rootSaga);
 
-export default configureStore;
+export default store;
