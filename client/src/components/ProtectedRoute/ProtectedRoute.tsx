@@ -1,4 +1,9 @@
 import React, { FC } from "react";
+import { Route, Redirect } from "react-router-dom";
+import { getUserData } from "../../selectors/getUserData";
+import { connect } from "react-redux";
+import { RootState } from "../../redux/root-reducer";
+import { User } from "../../features/__commonModels__/userModel";
 
 interface ParentProps {
   exact: boolean;
@@ -6,10 +11,26 @@ interface ParentProps {
   component: JSX.Element;
 }
 
-type Props = ParentProps;
+interface StateProps {
+  authentication: User;
+}
 
-const ProtectedRoute: FC<Props> = props => {
-  return <div></div>;
+type Props = ParentProps & StateProps;
+
+const ProtectedRoute: FC<Props> = ({ path, exact, component, authentication }) => {
+  const { isAuthenticated, isFetching, token } = authentication;
+  return token === null || (!isAuthenticated && !isFetching) ? (
+    <Redirect to="/login" />
+  ) : (
+    <Route exact={exact} path={path} component={() => component} />
+  );
 };
 
-export default ProtectedRoute;
+const mapStateToProps = (state: RootState) => ({
+  authentication: getUserData(state)
+});
+
+export default connect<StateProps, {}, {}, RootState>(
+  mapStateToProps,
+  {}
+)(ProtectedRoute);
