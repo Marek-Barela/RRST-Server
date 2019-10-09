@@ -2,7 +2,7 @@ import * as api from "./authorization-api";
 import { loadUser, loadUserRequest } from "./authorization-actions";
 import { all, call, put, takeEvery } from "redux-saga/effects";
 import { getType } from "typesafe-actions";
-import { UserResponse } from "./authorization-model";
+import { UserResponse } from "../__commonModels__/userModel";
 import setAuthToken from "../../utils/setAuthToken";
 
 export function* handleFetchUser() {

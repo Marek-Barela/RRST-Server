@@ -3,7 +3,7 @@ import { loginUserRequest } from "../login/login-actions";
 import { registerUserRequest } from "../register/register-actions";
 import { getType } from "typesafe-actions";
 import { RootAction } from "../../redux/root-actions";
-import { User } from "../__commonInterfaces__/userInterface";
+import { User } from "../__commonModels__/userModel";
 
 const initialState: User = {
   token: localStorage.getItem("token"),
