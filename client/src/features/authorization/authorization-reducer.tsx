@@ -1,26 +1,13 @@
 import { RootAction } from "../../redux/root-actions";
 import { fetchUserRequest } from "./authorization-actions";
 import { getType } from "typesafe-actions";
-import { UserResponse } from "./authorization-model";
-
-export type AuthorizationState = {
-  token: string | null;
-  isAuthenticated: boolean | null;
-  isFetching: boolean;
-  user: UserResponse;
-};
-
-export const initialState: AuthorizationState = {
-  token: localStorage.getItem("token"),
-  isAuthenticated: null,
-  isFetching: true,
-  user: { _id: "" }
-};
+import { initialUserState } from "../__initialStates__/userInitialState";
+import { User } from "../__interfaces__/userInterface";
 
 export default function(
-  state: AuthorizationState = initialState,
+  state: User = initialUserState,
   action: RootAction
-): AuthorizationState {
+): User {
   switch (action.type) {
     case getType(fetchUserRequest.request): {
       return {
@@ -37,6 +24,7 @@ export default function(
       };
     }
     case getType(fetchUserRequest.failure): {
+      localStorage.removeItem("token");
       return {
         ...state,
         token: null,
@@ -48,7 +36,7 @@ export default function(
 
     /** 
     case LOGIN_SUCCESS:
-    case REGISTER_SUCCESS: {
+    case REGISTER_SUCCESS "ok": {
       localStorage.setItem("token", payload.token);
       return {
         ...state,
@@ -58,7 +46,7 @@ export default function(
       };
     }
     case LOGIN_FAIL:
-    case REGISTER_FAIL:
+    case REGISTER_FAIL "ok":
     case AUTH_ERROR "OK":
     case LOGOUT: {
       localStorage.removeItem("token");

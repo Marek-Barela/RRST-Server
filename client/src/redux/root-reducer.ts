@@ -2,10 +2,12 @@ import { combineReducers } from "redux";
 import { RootAction } from "./root-actions";
 import counter from "../components/Counter/Counter-reducer";
 import authorization from "../features/authorization/authorization-reducer";
+import register from "../features/register/register-reducer";
 
 const reducerMap = {
   counter,
-  authorization
+  authorization,
+  register
 };
 
 export type RootState = {
