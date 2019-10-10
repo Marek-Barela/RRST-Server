@@ -15,7 +15,6 @@ const Login: FC = () => {
       <h1>Welcome in login page</h1>
       <Link to="/">Main page</Link>
       <Link to="/registration">Registration</Link>
-      <Link to="/dashboard">Dashboard - redirect if note loged in</Link>
       <LoginForm />
     </div>
   );

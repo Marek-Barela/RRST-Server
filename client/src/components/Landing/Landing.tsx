@@ -11,7 +11,6 @@ const Landing = () => {
       <h1>Welcome on landing page</h1>
       <Link to="/login">Login</Link>
       <Link to="/registration">Registration</Link>
-      <Link to="/dashboard">Dashboard - redirect if note loged in</Link>
     </div>
   );
 };

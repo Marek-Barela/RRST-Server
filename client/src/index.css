@@ -20,9 +20,11 @@ button {
 }
 
 a {
+  font-size: 0.8em;
   color: #333333;
   text-decoration: none;
   padding: 10px;
+  margin-bottom: 5px;
   min-width: 200px;
   text-align: center;
   transition: 0.3s background-color;

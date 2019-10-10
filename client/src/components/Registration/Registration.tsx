@@ -14,7 +14,6 @@ const Registration: FC = () => {
       <h1>Welcome in registration page</h1>
       <Link to="/">Main page</Link>
       <Link to="/login">login</Link>
-      <Link to="/dashboard">Dashboard - redirect if note loged in</Link>
       <RegistrationForm />
     </div>
   );

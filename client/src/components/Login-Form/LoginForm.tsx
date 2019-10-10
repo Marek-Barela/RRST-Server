@@ -36,6 +36,7 @@ const LoginForm: FC<Props> = ({ login }) => {
           type="username"
           onChange={onChange}
           value={email}
+          aria-label="E-mail"
           placeholder="E-mail"
         />
       </div>
@@ -47,7 +48,7 @@ const LoginForm: FC<Props> = ({ login }) => {
           onChange={onChange}
           value={password}
           aria-label="password"
-          autoComplete="password"
+          autoComplete="on"
           placeholder="Password"
         />
       </div>

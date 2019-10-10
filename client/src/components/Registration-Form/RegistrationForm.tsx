@@ -36,14 +36,28 @@ const RegistrationForm: FC<Props> = ({ register }) => {
     <form onSubmit={e => onSubmit(e)} className={form}>
       <div className={inputWrapper}>
         <label htmlFor="username">Username</label>
-        <input name="name" type="username" onChange={onChange} value={name} />
+        <input
+          name="name"
+          type="username"
+          onChange={onChange}
+          value={name}
+          aria-label="Username"
+          placeholder="Username"
+        />
       </div>
       <div className={inputWrapper}>
-        <label htmlFor="email">email</label>
-        <input name="email" type="username" onChange={onChange} value={email} />
+        <label htmlFor="email">E-mail</label>
+        <input
+          name="email"
+          type="username"
+          onChange={onChange}
+          value={email}
+          aria-label="E-mail"
+          placeholder="E-mail"
+        />
       </div>
       <div className={inputWrapper}>
-        <label htmlFor="password">password</label>
+        <label htmlFor="password">Password</label>
         <input
           name="password"
           type="password"
@@ -51,10 +65,11 @@ const RegistrationForm: FC<Props> = ({ register }) => {
           value={password}
           aria-label="password"
           autoComplete="new-password"
+          placeholder="Password"
         />
       </div>
       <div className={inputWrapper}>
-        <label htmlFor="password2">repeat password</label>
+        <label htmlFor="password2">Repeat password</label>
         <input
           name="password2"
           type="password"
@@ -62,10 +77,11 @@ const RegistrationForm: FC<Props> = ({ register }) => {
           value={password2}
           aria-label="password"
           autoComplete="new-password"
+          placeholder="Repeat Password"
         />
       </div>
       <button type="submit" className={formButton}>
-        register
+        Register
       </button>
     </form>
   );
