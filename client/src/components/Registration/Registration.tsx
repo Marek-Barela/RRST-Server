@@ -1,5 +1,6 @@
 import React, { FC, useState, FormEvent } from "react";
 import Alert from "../Alert";
+import RedirectRule from "../RedirectRule";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { registerUser } from "../../features/register/register-actions";
@@ -36,6 +37,7 @@ const Login: FC<Props> = ({ register }) => {
 
   return (
     <div className={container}>
+      <RedirectRule redirectPathIfNotAuthorized="/registration" />
       <Alert />
       <h1>Welcome in login page</h1>
       <Link to="/">Main page</Link>
