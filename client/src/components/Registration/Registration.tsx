@@ -39,7 +39,7 @@ const Login: FC<Props> = ({ register }) => {
     <div className={container}>
       <RedirectRule redirectPathIfNotAuthorized="/registration" />
       <Alert />
-      <h1>Welcome in login page</h1>
+      <h1>Welcome in registration page</h1>
       <Link to="/">Main page</Link>
       <Link to="/login">login</Link>
       <Link to="/dashboard">Dashboard - redirect if note loged in</Link>
