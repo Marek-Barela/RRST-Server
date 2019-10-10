@@ -1,7 +1,7 @@
 import * as api from "./login-api";
 import { loginUser, loginUserRequest } from "./login-actions";
 import { loadUser } from "../authorization/authorization-actions";
-import { setAlert, removeAlert } from "../alert/alert-actions";
+import { setAlert, removeAlert } from "../../components/Alert/Alert-actions";
 import { all, call, put, takeLatest, delay } from "redux-saga/effects";
 import { getType } from "typesafe-actions";
 import { LoginUser } from "./login-model";

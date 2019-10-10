@@ -1,4 +1,4 @@
-import { UserResponse } from "../__commonModels__/userModel";
+import { UserResponse } from "./authorization-model";
 import axios from "axios";
 
 export const getUserFromDatabase = async (): Promise<UserResponse> => {

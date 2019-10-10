@@ -1,7 +1,7 @@
-import { setAlert, removeAlert } from "./alert-actions";
+import { setAlert, removeAlert } from "./Alert-actions";
 import { getType } from "typesafe-actions";
 import { RootAction } from "../../redux/root-actions";
-import { Alert } from "./alert-model";
+import { Alert } from "./Alert-model";
 
 const initialState: Alert[] = [];
 

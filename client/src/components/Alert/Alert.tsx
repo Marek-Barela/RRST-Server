@@ -1,8 +1,8 @@
 import React, { FC } from "react";
 import { connect } from "react-redux";
-import { getAlertMessages } from "../../features/alert/alert-selector";
+import { getAlertMessages } from "./Alert-selector";
 import { RootState } from "../../redux/root-reducer";
-import { Alert } from "../../features/alert/alert-model";
+import { Alert } from "./Alert-model";
 
 interface StateProps {
   alertMessages: Alert[];
