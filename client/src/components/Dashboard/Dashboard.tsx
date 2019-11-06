@@ -6,7 +6,7 @@ const Dashboard: FC = () => {
   const { container } = styles;
   return (
     <>
-      <RedirectRule redirectPathIfNotAuthorized="/" />
+      <RedirectRule redirectPathIfNotAuthorized="/login" />
       <div className={container}>
         <h1>Welcome in Dashboard</h1>
       </div>
