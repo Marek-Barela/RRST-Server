@@ -7,16 +7,17 @@ import styles from "./Login.module.css";
 
 const Login: FC = () => {
   const { container } = styles;
-
   return (
-    <div className={container}>
-      <Alert />
+    <>
       <RedirectRule redirectPathIfNotAuthorized="/login" />
-      <h1>Welcome in login page</h1>
-      <Link to="/">Main page</Link>
-      <Link to="/registration">Registration</Link>
-      <LoginForm />
-    </div>
+      <div className={container}>
+        <Alert />
+        <h1>Welcome in login page</h1>
+        <Link to="/">Main page</Link>
+        <Link to="/registration">Registration</Link>
+        <LoginForm />
+      </div>
+    </>
   );
 };
 
